@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import StyledJsxRegistry from './registry'
 import React from 'react'
+import AuthProvider from './AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StyledJsxRegistry>
-      <body>{children}</body>       
+      <body>
+      <AuthProvider>
+ {children}</AuthProvider>
+        </body>       
         </StyledJsxRegistry>
     </html>
   )

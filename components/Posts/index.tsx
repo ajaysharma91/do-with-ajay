@@ -5,6 +5,7 @@ import useGetPosts from "./useGetPosts";
 import Cards from "./Cards";
 
 const PostContainer = styled.div`
+  margin-top:70px;
   display: flex;
   width: 100%;
   justify-content: flex-start;

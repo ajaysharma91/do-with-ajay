@@ -1,0 +1,17 @@
+
+div :has(>code){
+    background-color: lightgray !important;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+    color: #000 !important;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+iframe {
+    width: 100% !important;
+    margin: 1.5rem 0;
+}

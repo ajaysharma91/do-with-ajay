@@ -1,8 +1,11 @@
 "use client";
+import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 import { styled } from "styled-components";
 
 const NavbarMain = styled.div`
+  position:fixed;
+  z-index:1;
   width: 100%;
   display: flex;
   border-bottom:1px solid lightgray;
@@ -41,7 +44,7 @@ const BrandText = styled.p`
 `;
 const Text = styled.p`
   font-size: 18px;
-  font-wieght: 300;
+  font-weight: 300;
   @media (max-width: 480px) {
     font-size: 14px;
   }
@@ -75,6 +78,7 @@ export default function Navbar({
   setIsLight: any;
   isLight: any;
 }) {
+  const {data:session} = useSession()
   return (
     <NavbarMain>
       <Container>
@@ -93,7 +97,8 @@ export default function Navbar({
           <Text>About</Text>
         </Nav>
         <AuthSection>
-          <Text>Login</Text>
+          {!session && <button onClick={()=>signIn(undefined, { callbackUrl: 'http://localhost:3000/learn-with-parashar' })}>Login</button>}
+          {session && <button onClick={()=>signOut()}>Logout</button>}
           <ThemeChanger onClick={() => setIsLight()}>
             {isLight ? "Dark" : "Light"}
           </ThemeChanger>
