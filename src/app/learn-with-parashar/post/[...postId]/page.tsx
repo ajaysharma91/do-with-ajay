@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import "../../page.css";
 import { styled } from "styled-components";
 import UserDetails from "../../../../../components/User/UserDetails";
+import Comment from "../../../../../components/Comment";
 const Container = styled.div`
   display: flex;
   flex-direction:column;
@@ -136,6 +137,8 @@ const Post = ({ params }: { params: any }) => {
           </UserWrapper>
           <PostBody dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Content>
+        <BR/>
+        <Comment/>
         <BR/>
         <Content>
         <UserWrapper>
