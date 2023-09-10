@@ -3,7 +3,8 @@ import CreateComment from "./CreateComment";
 import CommentList from "./CommentList";
 import styled from "styled-components";
 const DIV = styled.div`
-  width: 50%;
+  width: 100%;
+  padding:0.3rem;
 `;
 function Comment() {
   const [comment, setComment] = React.useState([

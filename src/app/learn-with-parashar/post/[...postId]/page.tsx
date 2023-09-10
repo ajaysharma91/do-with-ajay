@@ -4,7 +4,12 @@ import "../../page.css";
 import { styled } from "styled-components";
 import UserDetails from "../../../../../components/User/UserDetails";
 import Comment from "../../../../../components/Comment";
+import Drawer from "../../../../../components/Common/Drower";
+import TemporaryDrawer from "../../../../../components/Common/Drower";
+import CommentList from "../../../../../components/Comment/CommentList";
+import { comment } from "postcss";
 const Container = styled.div`
+flex:2;
   display: flex;
   flex-direction:column;
   justify-content: center;
@@ -128,6 +133,7 @@ const Post = ({ params }: { params: any }) => {
   const { user }: any = post;
   return (
     <Container>
+      <TemporaryDrawer><Comment/></TemporaryDrawer>
       <WrapContainer>
         <Content>
           <PostTitle>{post?.title}</PostTitle>
@@ -138,7 +144,7 @@ const Post = ({ params }: { params: any }) => {
           <PostBody dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Content>
         <BR/>
-        <Comment/>
+        {/* <Comment/> */}
         <BR/>
         <Content>
         <UserWrapper>

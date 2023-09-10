@@ -10,7 +10,8 @@ const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 100%;
+  padding:0.3rem;
 `;
 const InputWrapper = styled.div`
   display: flex;
@@ -41,6 +42,7 @@ const Button = styled.button`
   color: white;
   background-color: green;
 `;
+
 const submitCategory = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 };

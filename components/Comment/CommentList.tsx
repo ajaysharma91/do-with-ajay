@@ -16,7 +16,7 @@ const Main = styled.div`
   width: 100%;
   // margin-top: 0.3rem;
   display: flex;
-  margin-left: 15px;
+//   margin-left: 15px;
   backgrand: ${(props) => props.theme.bg};
   //   border: 1px solid lightgray;
   border-radius: 5px;
@@ -25,16 +25,18 @@ const Main = styled.div`
 const Action = styled.div`
   display: flex;
   gap: 0.2rem;
+  width:100%;
 `;
 const Input = styled.input`
   // outline:auto;
+  width:65%;
   flex: 10;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 0.3rem;
 `;
 const Button = styled.button`
-  width: 100%;
+  width: 30%;
   flex: 1;
   //   height: 50px;
   border: 1px solid gray;
@@ -52,15 +54,18 @@ export default function CommentList({ comments }) {
         <Container>
           <div
             style={{
+                width:'100%',
               border: "1px solid lightgray",
               padding: "0.2rem",
               borderRadius: "0.2rem",
+              display:'flex',
+              flexDirection:'column'
             }}
           >
             <div>{comments?.body}</div>
             <Action>
               {!isReply && (
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',width:'100%',padding:'0 0.3rem'}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',width:'100%',padding:'0 0.3rem',flexWrap:'wrap'}}>
                   <button onClick={() => setIsReply(true)}>reply</button>
                   <button onClick={()=>setIsShow(!isShow)}>{isShow ? "Hide" : "Show"} Replies</button>
                 </div>
@@ -100,7 +105,7 @@ const CommentInput = () => {
       }}
     >
       <Input />
-      <Button>Comment</Button>
+      <Button>Send</Button>
     </div>
   );
 };

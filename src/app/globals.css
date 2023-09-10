@@ -24,3 +24,12 @@ body {
 html, body {
   overflow: auto;
 }
+.MuiDrawer-paper {
+  width: 40% !important;
+  }
+  
+  @media (max-width: 800px) {
+      .MuiDrawer-paper {
+   width: 70% !important;
+   }
+  }
