@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import CommentList from '../Comment/CommentList';
-
+import CommentIcon from '@mui/icons-material/Comment';
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function TemporaryDrawer(props) {
@@ -72,10 +72,10 @@ export default function TemporaryDrawer(props) {
   );
 
   return (
-    <div style={{position:'absolute',top:'5rem',zIndex:'1'}}>
-      {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
+    <div>
+      {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}><CommentIcon/></Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

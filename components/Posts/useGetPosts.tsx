@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 const getPosts = async () => {
     console.log("Get Past")
+  
     const data = await fetch("http://localhost:8080/api/posts/?pageNo=0&pageSize=10&sortDir=asc",{
         next:{revalidate:0}
     });

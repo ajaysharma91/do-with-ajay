@@ -84,9 +84,9 @@ export default function CommentList({ comments }) {
               flexDirection: "column",
             }}
           >
-            {comments.reply?.map((comment, index) => (
-              <CommentList key={index} comments={comment} />
-            ))}
+            {comments?.parent && (
+              <CommentList comments={comments.parent} />
+            )}
           </PaddingLeft>
         </Container>
       </>

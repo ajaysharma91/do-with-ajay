@@ -6,37 +6,14 @@ const DIV = styled.div`
   width: 100%;
   padding:0.3rem;
 `;
-function Comment() {
-  const [comment, setComment] = React.useState([
-    {
-      id: 1,
-      body: "First Comment",
-      reply: [
-        { id: 1, body: "reply on first", reply: [] },
-        {
-          id: 2,
-          body: "reply 1 on first",
-          reply: [{ id: 1, body: "Thanks", reply: [] }],
-        },
-      ],
-    },
-    {
-      id: 2,
-      body: "Second Comment",
-      reply: [
-        {
-          id: 1,
-          body: "reply 1 on second",
-          reply: [{ id: 1, body: "Thanks for your resply", reply: [] }],
-        },
-      ],
-    },
-  ]);
+function Comment(comments) {
+  const [comment, setComment] = React.useState(comments);
+  console.log({comment})
   return (
     <>
       <CreateComment />
       <DIV>
-      {comment.map((comment1,index)=>  (<CommentList key={index} comments={comment1} />))}
+      {comment?.comments?.map((comment1,index)=>  (<CommentList key={index} comments={comment1} />))}
       </DIV>
     </>
   );

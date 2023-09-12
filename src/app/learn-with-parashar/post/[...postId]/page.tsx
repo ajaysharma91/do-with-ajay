@@ -8,6 +8,7 @@ import Drawer from "../../../../../components/Common/Drower";
 import TemporaryDrawer from "../../../../../components/Common/Drower";
 import CommentList from "../../../../../components/Comment/CommentList";
 import { comment } from "postcss";
+import useGetComments from "../../../../../components/Posts/useGetComments";
 const Container = styled.div`
 flex:2;
   display: flex;
@@ -107,6 +108,8 @@ interface PostInterface {
 }
 const Post = ({ params }: { params: any }) => {
   const { postId } = params;
+  const {error,loading,data} = useGetComments(postId);
+  console.log("Data ",{data})
   const [post, setPost] = React.useState<PostInterface>({
     user: {
       username: "",
@@ -133,13 +136,13 @@ const Post = ({ params }: { params: any }) => {
   const { user }: any = post;
   return (
     <Container>
-      <TemporaryDrawer><Comment/></TemporaryDrawer>
       <WrapContainer>
         <Content>
           <PostTitle>{post?.title}</PostTitle>
           <PostDesc>{post?.description}</PostDesc>
           <UserWrapper>
             <UserDetails user={user} />
+            <TemporaryDrawer><Comment comments={data}/></TemporaryDrawer>
           </UserWrapper>
           <PostBody dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Content>
