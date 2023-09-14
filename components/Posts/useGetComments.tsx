@@ -4,13 +4,10 @@ const getComments = async (postId:any) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
-        method: "POST",
+        method: "GET",
         headers: myHeaders,
-        body: JSON.stringify({
-            postId:postId
-        }),
       };
-    try{const data = await fetch("http://localhost:3000/api/comment",requestOptions)
+    try{const data = await fetch(`http://localhost:3000/api/comment/${postId}`,requestOptions)
     console.log({data})
     return data.json();}
     catch(err){

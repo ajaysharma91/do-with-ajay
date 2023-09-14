@@ -119,7 +119,7 @@ function UserDetails({
               </About>
               <About>
                 <p>Hi, I am fullstack developer, working full time in XYZ MNCm my expertise in Front End Developer
-                Support me on Substack: https://artificialcorner.substack.com/ Medium doesn't support tech writing since August 1st</p>
+                Support me on Substack: https://artificialcorner.substack.com/ Medium does not support tech writing since August 1st</p>
               </About>
             </AboutMe>
             <FolowUpDetails>

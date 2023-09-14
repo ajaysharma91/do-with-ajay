@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import styled from "styled-components";
 const PostContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const PostCard = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  gap:0.1rem;
+  gap: 0.1rem;
   // box-shadow: ${(props) => props.theme.bs};
   // box-shadow: 1px 2px 4px 2px rgba(12, 12, 12, 0.2);
 `;
@@ -32,8 +32,8 @@ const CardSubtitle = styled.h4`
 `;
 const PostCardImage = styled.div`
   width: 20%;
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 `;
 const PostContent = styled.div`
   display: flex;
@@ -43,17 +43,15 @@ const PostContent = styled.div`
 const CardBody = styled.div`
   font-weight: 300;
   font-size: 18px;
-  height:200px;
+  height: 200px;
   overflow: hidden;
-
 `;
 const CardFooter = styled.div`
   width: 100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:${(props) => props.theme.color};
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: ${(props) => props.theme.color};
 `;
 const ButtonMore = styled.button`
   width: 50%;
@@ -64,13 +62,21 @@ const CardHeader = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 0.1rem;
-  margin-bottom:0.5rem;
+  margin-bottom: 0.5rem;
 `;
 import { useRouter } from "next/navigation";
 import UserDetails from "../User/UserDetails";
 import CategoryDetails from "../Category";
 
-export default function Cards({ post, setPageNumber, isLast }) {
+export default function Cards({
+  post,
+  setPageNumber,
+  isLast,
+}: {
+  post: any;
+  setPageNumber: any;
+  isLast: any;
+}) {
   const router = useRouter();
   const cardRef = useRef();
   console.log({ post });
@@ -92,9 +98,9 @@ export default function Cards({ post, setPageNumber, isLast }) {
     );
 
     observer.observe(cardRef.current);
-  }, [isLast]);
+  }, [isLast, setPageNumber]);
   console.log({ isLast });
-  const cat = {name:post.category.name}
+  const cat = { name: post.category.name };
   return (
     <PostContainer>
       <PostCard
@@ -108,22 +114,19 @@ export default function Cards({ post, setPageNumber, isLast }) {
           <CardTitle>{post.title} </CardTitle>
           <CardSubtitle>{post.description} </CardSubtitle>
           {/* <CardBody dangerouslySetInnerHTML={{ __html: post.content }} /> */}
-         
         </PostContent>
         <PostCardImage>
-         <Image src="/book.jpg" alt="book image" width={300} height={300}/>
+          <Image src="/book.jpg" alt="book image" width={300} height={300} />
         </PostCardImage>
       </PostCard>
       <CardFooter>
-            <ButtonMore
-              onClick={() =>
-                router.push(`/learn-with-parashar/post/${post.id}`)
-              }
-            >
-              More Info.
-            </ButtonMore>
-            <CategoryDetails category={cat}/>
-          </CardFooter>
+        <ButtonMore
+          onClick={() => router.push(`/learn-with-parashar/post/${post.id}`)}
+        >
+          More Info.
+        </ButtonMore>
+        <CategoryDetails category={cat} />
+      </CardFooter>
     </PostContainer>
   );
 }

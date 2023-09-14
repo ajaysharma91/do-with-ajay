@@ -109,7 +109,7 @@ interface PostInterface {
 const Post = ({ params }: { params: any }) => {
   const { postId } = params;
   const {error,loading,data} = useGetComments(postId);
-  console.log("Data ",{data})
+  console.log("Data ",JSON.stringify(data))
   const [post, setPost] = React.useState<PostInterface>({
     user: {
       username: "",
@@ -142,7 +142,7 @@ const Post = ({ params }: { params: any }) => {
           <PostDesc>{post?.description}</PostDesc>
           <UserWrapper>
             <UserDetails user={user} />
-            <TemporaryDrawer><Comment comments={data}/></TemporaryDrawer>
+            <TemporaryDrawer><Comment comments={data} postId={postId}/></TemporaryDrawer>
           </UserWrapper>
           <PostBody dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Content>

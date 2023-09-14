@@ -16,7 +16,7 @@ const Main = styled.div`
   width: 100%;
   // margin-top: 0.3rem;
   display: flex;
-//   margin-left: 15px;
+  //   margin-left: 15px;
   backgrand: ${(props) => props.theme.bg};
   //   border: 1px solid lightgray;
   border-radius: 5px;
@@ -25,11 +25,11 @@ const Main = styled.div`
 const Action = styled.div`
   display: flex;
   gap: 0.2rem;
-  width:100%;
+  width: 100%;
 `;
 const Input = styled.input`
   // outline:auto;
-  width:65%;
+  width: 65%;
   flex: 10;
   border: 1px solid gray;
   border-radius: 5px;
@@ -45,29 +45,41 @@ const Button = styled.button`
   color: white;
   background-color: green;
 `;
-export default function CommentList({ comments }) {
+export default function CommentList({ comments }: { comments: any }) {
   const [isReply, setIsReply] = React.useState(false);
   const [isShow, setIsShow] = React.useState(false);
+  console.log({comments})
   return (
     <Main>
       <>
         <Container>
           <div
             style={{
-                width:'100%',
+              width: "100%",
               border: "1px solid lightgray",
               padding: "0.2rem",
               borderRadius: "0.2rem",
-              display:'flex',
-              flexDirection:'column'
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <div>{comments?.body}</div>
             <Action>
               {!isReply && (
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',width:'100%',padding:'0 0.3rem',flexWrap:'wrap'}}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    padding: "0 0.3rem",
+                    flexWrap: "wrap",
+                  }}
+                >
                   <button onClick={() => setIsReply(true)}>reply</button>
-                  <button onClick={()=>setIsShow(!isShow)}>{isShow ? "Hide" : "Show"} Replies</button>
+                  <button onClick={() => setIsShow(!isShow)}>
+                    {isShow ? "Hide" : "Show"} Replies
+                  </button>
                 </div>
               )}
               {/* <button>edit</button> */}
@@ -84,9 +96,7 @@ export default function CommentList({ comments }) {
               flexDirection: "column",
             }}
           >
-            {comments?.parent && (
-              <CommentList comments={comments.parent} />
-            )}
+            {comments?.parent && <CommentList comments={comments.parent} />}
           </PaddingLeft>
         </Container>
       </>

@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import React from "react";
 import { styled } from "styled-components";
 const Container = styled.div`
@@ -11,7 +12,7 @@ const FormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding:0.3rem;
+  padding: 0.3rem;
 `;
 const InputWrapper = styled.div`
   display: flex;
@@ -43,23 +44,19 @@ const Button = styled.button`
   background-color: green;
 `;
 
-const submitCategory = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-};
-function CreateComment() {
-  const [body, setBody] = React.useState("");
-  
+function CreateComment({postId,submitCategory}:{postId:any,submitCategory:Function}) {
+  const [bodyText, setBodyText] = React.useState("");
   return (
     <Container>
       <FormWrapper>
-        <Form onSubmit={(e) => submitCategory(e)}>
+        <Form onSubmit={(e) => submitCategory(e,bodyText)}>
           <InputWrapper>
             <Input
               placeholder="Please Enter Thought.."
-              name="body"
+              name="bodyText"
               id="post-title"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
+              value={bodyText}
+              onChange={(e) => setBodyText(e.target.value)}
             />
           </InputWrapper>
           <Button>Send</Button>
