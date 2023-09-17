@@ -4,8 +4,9 @@ export async function GET(request: Request, { params }: { params: any }) {
   console.log({ params });
   console.log("GETIINg", request);
   const { id } = params;
-  var requestOptions = {
+  var requestOptions:RequestInit = {
     method: "GET",
+    cache: 'no-store' 
   };
   try {
     const result = await fetch(

@@ -1,5 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
+import Input from "../Common/Input";
+import CreateComment from "./CreateComment";
 const Container = styled.div`
   display: flex;
   backgrand: ${(props) => props.theme.bg};
@@ -27,14 +29,14 @@ const Action = styled.div`
   gap: 0.2rem;
   width: 100%;
 `;
-const Input = styled.input`
-  // outline:auto;
-  width: 65%;
-  flex: 10;
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 0.3rem;
-`;
+// const Input = styled.input`
+//   // outline:auto;
+//   width: 65%;
+//   flex: 10;
+//   border: 1px solid gray;
+//   border-radius: 5px;
+//   padding: 0.3rem;
+// `;
 const Button = styled.button`
   width: 30%;
   flex: 1;
@@ -45,10 +47,15 @@ const Button = styled.button`
   color: white;
   background-color: green;
 `;
-export default function CommentList({ comments }: { comments: any }) {
+export default function CommentList({
+  comments,
+  submitComment,
+}: {
+  comments: any;
+  submitComment: any;
+}) {
   const [isReply, setIsReply] = React.useState(false);
   const [isShow, setIsShow] = React.useState(false);
-  console.log({comments})
   return (
     <Main>
       <>
@@ -87,7 +94,14 @@ export default function CommentList({ comments }: { comments: any }) {
                 <button onClick={() => setIsReply(false)}>cancel</button>
               )}
             </Action>
-            {isReply && <CommentInput />}
+            {isReply && (
+              <>
+                <CreateComment
+                  submitComment={submitComment}
+                  parentId={comments?.id}
+                />
+              </>
+            )}
           </div>
 
           <PaddingLeft
@@ -96,7 +110,12 @@ export default function CommentList({ comments }: { comments: any }) {
               flexDirection: "column",
             }}
           >
-            {comments?.parent && <CommentList comments={comments.parent} />}
+            {comments?.parent && (
+              <CommentList
+                comments={comments.parent}
+                submitComment={submitComment}
+              />
+            )}
           </PaddingLeft>
         </Container>
       </>
@@ -104,18 +123,18 @@ export default function CommentList({ comments }: { comments: any }) {
   );
 }
 
-const CommentInput = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "0.1rem",
-      }}
-    >
-      <Input />
-      <Button>Send</Button>
-    </div>
-  );
-};
+// const CommentInput = () => {
+//   return (
+//     <div
+//       style={{
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         gap: "0.1rem",
+//       }}
+//     >
+//       <Input onChange={() => Function} />
+//       <Button>Send</Button>
+//     </div>
+//   );
+// };

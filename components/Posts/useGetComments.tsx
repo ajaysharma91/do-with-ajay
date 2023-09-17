@@ -32,6 +32,6 @@ export default function useGetComments(postId: any) {
             setLoading(false);
             setError(err)
         })
-    },[])
+    },[postId])
     return {error,loading,data}
 }

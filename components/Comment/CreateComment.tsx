@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import { styled } from "styled-components";
+import Input from "../Common/Input";
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -27,36 +28,42 @@ const Form = styled.form`
   align-items: center;
   width: 100%;
 `;
-const Input = styled.textarea`
-  // outline:auto;
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 0.5rem;
-`;
+// const Input = styled.textarea`
+//   // outline:auto;
+//   border: 1px solid gray;
+//   border-radius: 5px;
+//   padding: 0.5rem;
+// `;
 const Button = styled.button`
   width: 100%;
-  flex: 1;
-  height: 50px;
+  flex: 2;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: 0 0.5rem;
+  padding: 0.4rem;
   color: white;
   background-color: green;
 `;
 
-function CreateComment({postId,submitCategory}:{postId:any,submitCategory:Function}) {
-  const [bodyText, setBodyText] = React.useState("");
+function CreateComment({postId,submitComment,parentId}:{postId?:any,submitComment:Function,parentId?:number}) {
+  const [body, setBody] = React.useState({
+    bodyText:'',
+    parent_id:parentId
+  });
+  const onChangeHandler = (e:any)=>{
+    console.log("Hello change")
+    setBody({...body,bodyText:e.target.value})
+  }
   return (
     <Container>
       <FormWrapper>
-        <Form onSubmit={(e) => submitCategory(e,bodyText)}>
+        <Form onSubmit={(e) => submitComment(e,body)}>
           <InputWrapper>
             <Input
               placeholder="Please Enter Thought.."
               name="bodyText"
-              id="post-title"
-              value={bodyText}
-              onChange={(e) => setBodyText(e.target.value)}
+              id="input-id"
+              value={body.bodyText}
+              onChange={onChangeHandler}
             />
           </InputWrapper>
           <Button>Send</Button>
