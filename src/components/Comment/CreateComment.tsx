@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import { styled } from "styled-components";
-import Input from "../Common/Input";
+import Input from "../../Common/Input";
 const Container = styled.div`
   display: flex;
   justify-content: center;

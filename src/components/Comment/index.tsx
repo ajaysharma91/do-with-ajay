@@ -41,7 +41,7 @@ function Comment({ postId }: { postId: any }) {
   },[response])
   const submitComment = async (
     e: React.FormEvent<HTMLFormElement>,
-    body: any
+    data: any
   ) => {
     e.preventDefault();
     var myHeaders = new Headers();
@@ -49,8 +49,8 @@ function Comment({ postId }: { postId: any }) {
     var raw = JSON.stringify({
       token: session?.user.accessToken,
       commentData: {
-        parent_id: body?.parent_id?body.parent_id:0,
-        body: body?.bodyText,
+        parent_id: data?.parent_id?data.parent_id:0,
+        body: data?.bodyText,
         name: "kashis",
         email: "test2@gmail.com",
       },
@@ -60,6 +60,7 @@ function Comment({ postId }: { postId: any }) {
       headers: myHeaders,
       body: raw,
     };
+    console.log("Request Param",requestOptions)
     try {
       await fetch(`/api/comment/${postId}`, requestOptions)
         .then((res) => {

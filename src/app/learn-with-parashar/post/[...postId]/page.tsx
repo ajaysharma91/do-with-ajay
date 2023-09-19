@@ -2,13 +2,13 @@
 import React, { useEffect } from "react";
 import "../../page.css";
 import { styled } from "styled-components";
-import UserDetails from "../../../../../components/User/UserDetails";
-import Comment from "../../../../../components/Comment";
-import Drawer from "../../../../../components/Common/Drawer";
-import TemporaryDrawer from "../../../../../components/Common/Drawer";
-import CommentList from "../../../../../components/Comment/CommentList";
+import UserDetails from "../../../../components/User/UserDetails";
+import Comment from "../../../../components/Comment";
+import Drawer from "../../../../Common/Drawer";
+import TemporaryDrawer from "../../../../Common/Drawer";
+import CommentList from "../../../../components/Comment/CommentList";
 import { comment } from "postcss";
-import useGetComments from "../../../../../components/Posts/useGetComments";
+import useGetComments from "../../../../components/Posts/useGetComments";
 const Container = styled.div`
 flex:2;
   display: flex;

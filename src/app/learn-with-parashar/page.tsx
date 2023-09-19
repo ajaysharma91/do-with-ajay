@@ -2,7 +2,7 @@
 import React from 'react'
 import './page.css';
 import { styled } from 'styled-components'
-import Posts from '../../../components/Posts';
+import Posts from '../../components/Posts';
 const Main = styled.div`
   margin-top:70px;
   position:relative;

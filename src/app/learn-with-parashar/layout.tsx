@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode } from "react";
-import Navbar from "../../../components/navbar";
+import Navbar from "../../components/navbar";
 import { ThemeProvider, styled } from "styled-components";
 import { useSession } from "next-auth/react";
 import AuthProvider from "../AuthProvider";

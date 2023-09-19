@@ -7,6 +7,7 @@ const getPosts = async () => {
     });
     return data.json();
   };
+   
 export default function useGetPosts(pageNumer: any) {
     const[loading,setLoading] = useState(true);
     const[error,setError] = useState(null);
