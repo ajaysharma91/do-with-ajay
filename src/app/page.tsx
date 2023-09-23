@@ -2,8 +2,8 @@
 import {useSession} from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import AuthProvider from './AuthProvider';
-import CreatePost from '../../components/Posts/CreatePost';
-import { Post } from '../../components/global-constant';
+import CreatePost from '../components/Posts/CreatePost';
+import { Post } from '../components/global-constant';
 export default function Home() {
   const { data:session, status } = useSession();
   if (status === 'loading') {

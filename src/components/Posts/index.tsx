@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { useRouter } from "next/navigation";
@@ -5,14 +6,14 @@ import useGetPosts from "./useGetPosts";
 import Cards from "./Cards";
 
 const PostContainer = styled.div`
-  margin-top:70px;
+  margin-top: 70px;
   display: flex;
   width: 100%;
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom:100px;
+  margin-bottom: 100px;
 `;
 const PostCard = styled.div`
   display: flex;
@@ -56,26 +57,32 @@ const ButtonMore = styled.button`
   align-items: flex-end;
 `;
 
-export default function Posts() {
+export default function Posts({ posts }: { posts: any }) {
   const router = useRouter();
   const [pageNumer, setPageNumber] = useState(1);
   const { error, loading, data } = useGetPosts(pageNumer);
   const starting = (pageNumer - 1) * 10;
   console.log({ starting });
 
-  const getCards: React.ReactElement[] = data
+  const getCards: React.ReactElement[] = posts
     .slice(0, pageNumer * 10)
-    .map((post: any, index) => {
+    .map((post: any, index: any) => {
       const isLast = index + 1 == pageNumer * 10;
-      console.log({isLast})
-        return (
-         <Cards post={post} setPageNumber={setPageNumber} isLast={isLast} key={index}/>
-        );
-      }
-    );
-  console.log(data, { loading }, getCards,{pageNumer});
-  return <PostContainer>
-        {getCards}
-    {loading && <h1>Loading....</h1>}
-    </PostContainer>;
+      console.log({ isLast });
+      return (
+        <Cards
+          post={post}
+          setPageNumber={setPageNumber}
+          isLast={isLast}
+          key={index}
+        />
+      );
+    });
+  console.log(data, { loading }, getCards, { pageNumer });
+  return (
+    <PostContainer>
+      {getCards}
+      {loading && <h1>Loading....</h1>}
+    </PostContainer>
+  );
 }

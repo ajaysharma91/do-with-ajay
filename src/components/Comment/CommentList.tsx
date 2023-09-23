@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import Input from "../Common/Input";
+import Input from "../../Common/Input";
 import CreateComment from "./CreateComment";
 const Container = styled.div`
   display: flex;
@@ -47,6 +47,16 @@ const Button = styled.button`
   color: white;
   background-color: green;
 `;
+function getTotalComment(comments,count){
+  console.log({comments},"co",count)
+  
+    if(comments?.parent) { 
+       return getTotalComment(comments.parent,count+1);}
+      if(!comments?.parent) {
+        const res = count;
+        console.log(count,res);
+        return res;}
+  }
 export default function CommentList({
   comments,
   submitComment,
@@ -54,6 +64,9 @@ export default function CommentList({
   comments: any;
   submitComment: any;
 }) {
+  
+  const totalComments = getTotalComment(comments,0);
+  console.log({totalComments},getTotalComment(comments,0))
   const [isReply, setIsReply] = React.useState(false);
   const [isShow, setIsShow] = React.useState(false);
   return (
@@ -84,9 +97,9 @@ export default function CommentList({
                   }}
                 >
                   <button onClick={() => setIsReply(true)}>reply</button>
-                  <button onClick={() => setIsShow(!isShow)}>
-                    {isShow ? "Hide" : "Show"} Replies
-                  </button>
+                 {!!totalComments &&  <button onClick={() => setIsShow(!isShow)}>
+                  {isShow? `Hide Replies ${totalComments}` : `Show Replies ${totalComments}`}
+                  </button>}
                 </div>
               )}
               {/* <button>edit</button> */}
@@ -110,7 +123,7 @@ export default function CommentList({
               flexDirection: "column",
             }}
           >
-            {comments?.parent && (
+            {comments?.parent && isShow && (
               <CommentList
                 comments={comments.parent}
                 submitComment={submitComment}
