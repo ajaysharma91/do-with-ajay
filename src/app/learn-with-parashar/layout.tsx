@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 import Navbar from "../../components/navbar";
 import { ThemeProvider, styled } from "styled-components";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 // import AuthProvider from "../AuthProvider";
 import { redirect } from "next/navigation";
 const NavWrapper = styled.div`
@@ -41,12 +41,12 @@ export default function MainLayout({ children }: { children: ReactNode }) {
     console.log("Change");
     setIsLight(!isLight);
   }
-  const { data: session, status } = useSession();
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  } else if (!session?.user) {
-    redirect("/api/auth/signin");
-  } else {
+  // const { data: session, status } = useSession();
+  // if (status === "loading") {
+  //   return <div>Loading...</div>;
+  // } else if (!session?.user) {
+  //   redirect("/api/auth/signin");
+  // } else {
     return (
       // <AuthProvider>
       //   <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
@@ -63,5 +63,5 @@ export default function MainLayout({ children }: { children: ReactNode }) {
           <Main>{children}</Main>
         </ThemeProvider>
     );
-  }
+  // }
 }
