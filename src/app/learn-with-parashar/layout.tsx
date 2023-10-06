@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import Navbar from "../../components/navbar";
 import { ThemeProvider, styled } from "styled-components";
 import { useSession } from "next-auth/react";
-import AuthProvider from "../AuthProvider";
+// import AuthProvider from "../AuthProvider";
 import { redirect } from "next/navigation";
 const NavWrapper = styled.div`
   position:relative;
@@ -48,14 +48,20 @@ export default function MainLayout({ children }: { children: ReactNode }) {
     redirect("/api/auth/signin");
   } else {
     return (
-      <AuthProvider>
+      // <AuthProvider>
+      //   <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
+      //     <NavWrapper>
+      //        <Navbar setIsLight={changeThem} isLight={isLight} />
+      //     </NavWrapper>
+      //     <Main>{children}</Main>
+      //   </ThemeProvider>
+      // </AuthProvider>
         <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
           <NavWrapper>
              <Navbar setIsLight={changeThem} isLight={isLight} />
           </NavWrapper>
           <Main>{children}</Main>
         </ThemeProvider>
-      </AuthProvider>
     );
   }
 }
