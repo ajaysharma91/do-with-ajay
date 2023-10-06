@@ -49,7 +49,7 @@ const Button = styled.button`
   background-color: green;
 `;
 function Category() {
-    const { data: session } = useSession();
+    // const { data: session } = useSession();
 
   const [category, setCategory] = React.useState({
     name: "",
@@ -59,9 +59,8 @@ function Category() {
     e.preventDefault();
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    console.log("Session", session?.user.accessToken);
     var raw = JSON.stringify({
-      token: session?.user.accessToken,
+      // token: session?.user.accessToken,
       category,
     });
     var requestOptions = {
