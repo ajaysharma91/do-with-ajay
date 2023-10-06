@@ -57,14 +57,11 @@ const ButtonMore = styled.button`
   align-items: flex-end;
 `;
 
-export default function Posts({ posts }: { posts: any }) {
-  const router = useRouter();
+export default function Posts() {
   const [pageNumer, setPageNumber] = useState(1);
   const { error, loading, data } = useGetPosts(pageNumer);
   const starting = (pageNumer - 1) * 10;
-  console.log({ starting });
-
-  const getCards: React.ReactElement[] = posts
+  const getCards: React.ReactElement[] = data
     .slice(0, pageNumer * 10)
     .map((post: any, index: any) => {
       const isLast = index + 1 == pageNumer * 10;
@@ -78,7 +75,6 @@ export default function Posts({ posts }: { posts: any }) {
         />
       );
     });
-  console.log(data, { loading }, getCards, { pageNumer });
   return (
     <PostContainer>
       {getCards}
