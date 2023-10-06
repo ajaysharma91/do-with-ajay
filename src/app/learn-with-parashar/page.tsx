@@ -1,7 +1,7 @@
 import React from 'react'
 import './page.css';
 import Posts from '../../components/Posts';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 async function getPosts() {
   const res = await fetch('http://localhost:8080/api/posts/?pageNo=0&pageSize=5&sortDir=asc')
   // The return value is *not* serialized
