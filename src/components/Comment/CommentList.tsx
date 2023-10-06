@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import Input from "../../Common/Input";
 import CreateComment from "./CreateComment";
+import {getTotalComment} from '../../utils/comment'
 const Container = styled.div`
   display: flex;
   backgrand: ${(props) => props.theme.bg};
@@ -47,16 +48,7 @@ const Button = styled.button`
   color: white;
   background-color: green;
 `;
-function getTotalComment(comments,count){
-  console.log({comments},"co",count)
-  
-    if(comments?.parent) { 
-       return getTotalComment(comments.parent,count+1);}
-      if(!comments?.parent) {
-        const res = count;
-        console.log(count,res);
-        return res;}
-  }
+
 export default function CommentList({
   comments,
   submitComment,
@@ -66,12 +58,11 @@ export default function CommentList({
 }) {
   
   const totalComments = getTotalComment(comments,0);
-  console.log({totalComments},getTotalComment(comments,0))
   const [isReply, setIsReply] = React.useState(false);
   const [isShow, setIsShow] = React.useState(false);
   return (
     <Main>
-      <>
+
         <Container>
           <div
             style={{
@@ -116,7 +107,6 @@ export default function CommentList({
               </>
             )}
           </div>
-
           <PaddingLeft
             style={{
               display: isShow ? "flex" : "none",
@@ -131,7 +121,6 @@ export default function CommentList({
             )}
           </PaddingLeft>
         </Container>
-      </>
     </Main>
   );
 }

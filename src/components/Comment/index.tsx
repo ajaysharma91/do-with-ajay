@@ -69,7 +69,6 @@ function Comment({ postId }: { postId: any }) {
         .catch((err) => console.log(err));
     } catch (error) {}
   };
-  console.log({comment})
   return (
     <>
       <DIV>
