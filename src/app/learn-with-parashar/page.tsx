@@ -16,6 +16,6 @@ import Posts from '../../components/Posts';
 export default function MainPage({}) {
   // const data = await getPosts();
   return (
-    <Posts />
+    <Posts/>
   )
 }

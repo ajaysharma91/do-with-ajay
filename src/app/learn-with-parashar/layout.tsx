@@ -4,7 +4,6 @@ import Navbar from "../../components/navbar";
 import { ThemeProvider, styled } from "styled-components";
 // import { useSession } from "next-auth/react";
 // import AuthProvider from "../AuthProvider";
-import { redirect } from "next/navigation";
 const NavWrapper = styled.div`
   position:relative;
 `

@@ -52,7 +52,7 @@ const Button = styled.button`
   background-color: green;
 `;
 export default function CreatePost({ post }: { post: PostForm }) {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const [message, setMessage] = useState("");
   const [postData, setPostData] = useState(post);
   const handleEditorChange = (e: any) => {
@@ -63,9 +63,9 @@ export default function CreatePost({ post }: { post: PostForm }) {
     e.preventDefault();
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    console.log("Session", session?.user.accessToken);
+    // console.log("Session", session?.user.accessToken);
     var raw = JSON.stringify({
-      token: session?.user.accessToken,
+      // token: session?.user.accessToken,
       postData,
     });
     var requestOptions = {
